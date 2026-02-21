@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рыжонин Дмитрий | Веб-разработчик</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-image: url('fon2.jpg');
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background-color: white;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+        .nav-links a{
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #0066cc;
+        }
+        .get-in-touch {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .get-in-touch:hover {
+            background-color: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,102,204,0,3);
+        }
+        .get-in-touch:active {
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3rem;
+        }
+
+        .hero {
+            background-color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 200px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #000;
+        }
+
+        .section-subtitle {
+            font-weight: 600;
+            color: #0066cc;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .card-image {
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .card-text {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .grid-item .section-subtitle {
+            color: #0066cc;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eaeaea;
+            margin: 2rem 0;
+        }
+
+        .lorem-text {
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* Стили для списка технологий */
+        .tech-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .tech-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tech-list li::before {
+            content: "•";
+            color: #0066cc;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Верхняя навигация -->
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="#">Навыки</a>
+            <a href="#">Проекты</a>
+            <a href="#">Контакты</a>
+        </div>
+        <a href="https://t.me/planovoi4747" target="_blank" class="get-in-touch">Связаться в Telegram</a>
+    </nav>
+    <div class="container">
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Я <br>Рыжонин Дмитрий</h1>
+                <h2 class="hero-subtitle">Backend & Python</h2>
+                <p class="hero-description">
+                    Студент 3-го курса, увлечённый веб-разработкой Python. Стремлюсь создавать удобные приложения. Постоянно учусь новому.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Посмотреть проекты</a>
+                    <a href="#" class="btn btn-secondary">Связаться</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="my-photo.jpg" alt="Моё фото" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="column">
+                <div class="section-subtitle">ОБО МНЕ</div>
+                <h2 class="section-title">Обо мне</h2>
+                <p class="lorem-text">
+                    Мой путь в IT начался с желания создавать полезные вещи. Сейчас я активно изучаю Python. Верю, что хороший код должен быть не только рабочим, но и читаемым.
+                </p>
+            </div>
+            <div class="column">
+                <div class="section-subtitle">МОЙ ПУТЬ</div>
+                <h2 class="section-title">Путь в IT</h2>
+                <p class="lorem-text">
+                    Начинал с вёрстки простых сайтов, затем углубился в данную тематику. Сейчас активно осваиваю Python.
+                </p>
+                <ul class="tech-list">
+                    <li>HTML, CSS</li>
+                    <li>Python</li>
+                    <li>React</li>
+                    <li>Git, GitHub</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="section-subtitle">ПОРТФОЛИО</div>
+            <h2 class="section-title">Мой любимый проект</h2>
+            <p class="card-text">
+                Пока таких нет (())
+            </p>
+        </div>
+
+        <!-- Разделитель -->
+        <hr>
+
+        <div class="grid-2">
+            <div class="grid-item">
+                <div class="section-subtitle">МОИ ЦЕЛИ</div>
+                <p class="lorem-text">
+                    Хочу стать веб-разработчиком и создавать сложные веб-приложения. В планах — изучить Flask ,Django и SQL.
+                </p>
+            </div>
+            <div class="grid-item">
+                <div class="section-subtitle">ОТКРЫТ К ПРЕДЛОЖЕНИЯМ</div>
+                <p class="lorem-text">
+                    Ищу стажировку или работу веб-разработчиком. Готов выполнять тестовые задания и быстро обучаться новым технологиям.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
