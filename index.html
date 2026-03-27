@@ -271,6 +271,96 @@
             position: absolute;
             left: 0;
         }
+        /* Стили для формы регистрации */
+.registration-block {
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+}
+
+.btn-reg {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-reg:hover {
+    background-color: #0052a3;
+}
+
+.result-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #0066cc;
+    color: #333;
+    font-weight: 500;
+}
+
+.error-message {
+    border-left-color: #dc3545;
+    background-color: #fef2f2;
+    color: #991b1b;
+}
+
+.warning-message {
+    border-left-color: #ffc107;
+    background-color: #fff9e6;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.8rem;
+}
+
+.external-link {
+    margin-top: 1rem;
+    display: inline-block;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+.external-link:hover {
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
@@ -300,7 +390,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="my-photo.jpg" alt="Моё фото" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="1.jpg" alt="Моё фото" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
             </div>
         </div>
 
@@ -331,7 +421,7 @@
             <div class="section-subtitle">ПОРТФОЛИО</div>
             <h2 class="section-title">Мой любимый проект</h2>
             <p class="card-text">
-                Пока таких нет (())
+                Пока таких нет
             </p>
         </div>
 
@@ -352,8 +442,102 @@
                 </p>
             </div>
         </div>
+                <!-- ССЫЛКА НА GITHUB -->
+        <div style="text-align: center; margin: 1.5rem 0 0.5rem 0;">
+            <a href="https://github.com/Dimka229" target="_blank" style="color: #0066cc; text-decoration: none; font-weight: 500; font-size: 1.1rem; display: inline-block; padding: 0.5rem 1rem; background-color: #f0f0f0; border-radius: 30px;">
+                🔗 Мой GitHub →
+            </a>
+        </div>
+                <!-- ========== ФОРМА РЕГИСТРАЦИИ ========== -->
+        <div class="registration-block">
+            <div class="section-subtitle">ФОРМА РЕГИСТРАЦИИ</div>
+            <h2 class="section-title">Проверка доступа</h2>
+            <p style="color: #666; margin-bottom: 1.2rem;">Введите имя и возраст для проверки прав</p>
+            
+            <form id="accessForm">
+                <div class="form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" name="username" placeholder="Введите ваше имя" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст:</label>
+                    <input type="number" id="age" name="age" placeholder="Введите возраст" step="1" min="1">
+                </div>
+                <button type="submit" class="btn-reg">Повторить</button>
+            </form>
+            
+            <div id="resultMessage" class="result-message">
+                Здесь появится результат проверки
+            </div>
+            </div>
+        </div>
+        </div>
 
     </div>
+        <script>
+        // JavaScript для формы регистрации
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('accessForm');
+            const usernameInput = document.getElementById('username');
+            const ageInput = document.getElementById('age');
+            const resultDiv = document.getElementById('resultMessage');
+
+            function showMessage(text, type = 'info') {
+                resultDiv.textContent = text;
+                resultDiv.classList.remove('error-message', 'warning-message');
+                if (type === 'error') {
+                    resultDiv.classList.add('error-message');
+                } else if (type === 'warning') {
+                    resultDiv.classList.add('warning-message');
+                }
+            }
+
+            function handleSubmit(event) {
+                event.preventDefault(); // Без перезагрузки страницы
+
+                const name = usernameInput.value.trim();
+                const ageValue = ageInput.value.trim();
+
+                // Проверка имени
+                if (name === '') {
+                    showMessage('❌ Ошибка: имя не может быть пустым. Пожалуйста, введите ваше имя.', 'error');
+                    return;
+                }
+
+                // Проверка возраста
+                if (ageValue === '') {
+                    showMessage('❌ Ошибка: введите возраст.', 'error');
+                    return;
+                }
+
+                const age = Number(ageValue);
+                if (isNaN(age) || !Number.isInteger(age) || age <= 0) {
+                    showMessage('❌ Ошибка: возраст должен быть целым числом больше 0.', 'error');
+                    return;
+                }
+
+                // Определяем сообщение в зависимости от возраста
+                let message = '';
+                let type = 'info';
+                
+                if (age < 18) {
+                    message = `🔞 ${name}, ваш возраст ${age} лет. Доступ ограничен.`;
+                    type = 'warning';
+                } else if (age >= 18 && age <= 65) {
+                    message = `✅ ${name}, ваш возраст ${age} лет. Доступ разрешен.`;
+                    type = 'info';
+                } else {
+                    message = `👴 ${name}, ваш возраст ${age} лет. Рекомендуется упрощенный режим.`;
+                    type = 'warning';
+                }
+                
+                showMessage(message, type);
+            }
+
+            form.addEventListener('submit', handleSubmit);
+        });
+    </script>
+        </div>
 
 </body>
 </html>
