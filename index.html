@@ -425,7 +425,6 @@
             </p>
         </div>
 
-        <!-- Разделитель -->
         <hr>
 
         <div class="grid-2">
@@ -442,13 +441,12 @@
                 </p>
             </div>
         </div>
-                <!-- ССЫЛКА НА GITHUB -->
+                <!ССЫЛКА НА GITHUB>
         <div style="text-align: center; margin: 1.5rem 0 0.5rem 0;">
             <a href="https://github.com/Dimka229" target="_blank" style="color: #0066cc; text-decoration: none; font-weight: 500; font-size: 1.1rem; display: inline-block; padding: 0.5rem 1rem; background-color: #f0f0f0; border-radius: 30px;">
-                🔗 Мой GitHub →
+                Мой GitHub →
             </a>
         </div>
-                <!-- ========== ФОРМА РЕГИСТРАЦИИ ========== -->
         <div class="registration-block">
             <div class="section-subtitle">ФОРМА РЕГИСТРАЦИИ</div>
             <h2 class="section-title">Проверка доступа</h2>
@@ -467,7 +465,7 @@
             </form>
             
             <div id="resultMessage" class="result-message">
-                Здесь появится результат проверки
+                результат проверки
             </div>
             </div>
         </div>
@@ -500,19 +498,19 @@
 
                 // Проверка имени
                 if (name === '') {
-                    showMessage('❌ Ошибка: имя не может быть пустым. Пожалуйста, введите ваше имя.', 'error');
+                    showMessage(' Ошибка: имя не может быть пустым. Пожалуйста, введите ваше имя.', 'error');
                     return;
                 }
 
                 // Проверка возраста
                 if (ageValue === '') {
-                    showMessage('❌ Ошибка: введите возраст.', 'error');
+                    showMessage(' Ошибка: введите возраст.', 'error');
                     return;
                 }
 
                 const age = Number(ageValue);
                 if (isNaN(age) || !Number.isInteger(age) || age <= 0) {
-                    showMessage('❌ Ошибка: возраст должен быть целым числом больше 0.', 'error');
+                    showMessage(' Ошибка: возраст должен быть целым числом больше 0.', 'error');
                     return;
                 }
 
@@ -521,13 +519,13 @@
                 let type = 'info';
                 
                 if (age < 18) {
-                    message = `🔞 ${name}, ваш возраст ${age} лет. Доступ ограничен.`;
+                    message = ` ${name}, ваш возраст ${age} лет. Доступ ограничен.`;
                     type = 'warning';
                 } else if (age >= 18 && age <= 65) {
-                    message = `✅ ${name}, ваш возраст ${age} лет. Доступ разрешен.`;
+                    message = ` ${name}, ваш возраст ${age} лет. Доступ разрешен.`;
                     type = 'info';
                 } else {
-                    message = `👴 ${name}, ваш возраст ${age} лет. Рекомендуется упрощенный режим.`;
+                    message = ` ${name}, ваш возраст ${age} лет. Рекомендуется упрощенный режим.`;
                     type = 'warning';
                 }
                 
